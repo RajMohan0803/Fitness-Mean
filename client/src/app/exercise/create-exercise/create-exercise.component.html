@@ -1,0 +1,97 @@
+<div class="row" style="margin-top:40px; padding:20px; background-color:#eff0f2;border-radius:15px;
+-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+    <div class="col-sm-12" style="text-align:center;">
+        <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Add a new Exercise to a Workout Program!</h1>
+    </div>
+
+    <div class="col-sm-12">
+        <form #createExerciseForm="ngForm" (ngSubmit)="createExerciseForm.valid && onSubmit(createExerciseForm)">
+
+            <div class="form-group">
+                <label for="parentName">Existing Workout Program Name</label>
+                <input type="text" class="form-control" #parentName="ngModel"
+                    [(ngModel)]="exerciseService.selectedExercise.parentName" name="parentName"
+                    placeholder="Existing Workout Program Name" required
+                    [ngClass]="{'invalid-textbox' :createExerciseForm.submitted && !parentName.valid}">
+
+                <div *ngIf="createExerciseForm.submitted && !parentName.valid">
+                    <label class="validation-message">This field is required.</label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" #name="ngModel"
+                    [(ngModel)]="exerciseService.selectedExercise.name" name="name" placeholder="Name" required
+                    [ngClass]="{'invalid-textbox' :createExerciseForm.submitted && !name.valid}">
+
+                <div *ngIf="createExerciseForm.submitted && !name.valid">
+                    <label class="validation-message">This field is required.</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description of Exercise</label>
+                <input type="text" class="form-control" #description="ngModel"
+                    [(ngModel)]="exerciseService.selectedExercise.description" name="description" required
+                    [ngClass]="{'invalid-textbox' :createExerciseForm.submitted && !description.valid }"
+                    placeholder="Description">
+
+                <div *ngIf="createExerciseForm.submitted && !description.valid">
+                    <label class="validation-message">This field is required.</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="sets">Sets</label>
+                <input type="number" class="form-control" #sets="ngModel"
+                    [(ngModel)]="exerciseService.selectedExercise.sets" name="sets" required
+                    [ngClass]="{'invalid-textbox' :createExerciseForm.submitted && !sets.valid }" placeholder="Sets">
+
+                <div *ngIf="createExerciseForm.submitted && !sets.valid">
+                    <label class="validation-message">This field is required.</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="reps">Reps</label>
+                <input type="number" class="form-control" #reps="ngModel"
+                    [(ngModel)]="exerciseService.selectedExercise.reps" name="reps" placeholder="Reps">
+         <!--            required
+                    [ngClass]="{'invalid-textbox' :createExerciseForm.submitted && !reps.valid }" -->
+
+                <!-- <div *ngIf="createExerciseForm.submitted && !reps.valid">
+                    <label class="validation-message">This field is required.</label>
+                </div> -->
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration</label>
+                <input type="text" class="form-control" #duration="ngModel"
+                    [(ngModel)]="exerciseService.selectedExercise.duration" name="duration" placeholder="Duration">
+
+                <!-- <div *ngIf="createExerciseForm.submitted && !description.valid">
+                    <label class="validation-message">This field is required.</label>
+                </div> -->
+            </div>
+
+
+            <input type="submit" value="Submit">
+
+
+        </form>
+    </div>
+
+
+    <!-- Success message -->
+    <div class="success" *ngIf="showSucessMessage">
+        Exercise to an Existing WorkoutProgram successfully added
+    </div>
+
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+    </div>

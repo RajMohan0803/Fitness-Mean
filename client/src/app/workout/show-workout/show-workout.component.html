@@ -1,0 +1,29 @@
+<div>
+    <br>
+    <mat-card>
+        <br><br>
+        <mat-divider></mat-divider>
+        <br>
+        <div>
+            <table mat-table [dataSource]="workouts">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Workout Program Name</th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef>Description of Workout Program</th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+        </div>
+
+
+    </mat-card>
+</div>
